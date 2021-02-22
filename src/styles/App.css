@@ -1,0 +1,46 @@
+#root{
+	background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+	font-family: -webkit-pictograph;
+}
+
+.mainDiv{
+    min-height:100vh;
+}
+
+/*@media screen and (max-width: 1440px){
+	h1
+}*/
+
+.searchDiv{
+	position: absolute;
+	display: table-cell;
+	transform: translate(-50%, -50%);
+	top:50%;
+	z-index: 200000000000;
+}
+
+.searchDone{
+	left: 50%;
+	animation: animateOpen 1s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes animateOpen {
+    0% {
+    }
+
+    100%{
+    	top:100px;
+
+    }
+}
+
+.h5{
+	color: black;
+}
+.h6{
+	color: #0053b9;
+}
+p{
+	color: #736f6f;
+}
