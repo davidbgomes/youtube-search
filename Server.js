@@ -7,6 +7,8 @@ app.use(cors())
 
 app.get('/search', (req, res) => {
 
+
+
 	let url = `https://www.googleapis.com/youtube/v3/search?key=${process.env.API_KEY}&type=video&part=snippet&maxResults=9&q=`
 
 	console.log("params",req.query.searchText)
@@ -27,5 +29,5 @@ app.get('/search', (req, res) => {
 })
 
 app.listen(process.env.PORT || 5000, () => {
-  	console.log(`listening at http://localhost:${port}`)
+  	console.log(`listening at http://localhost:${process.env.PORT}`)
 })
