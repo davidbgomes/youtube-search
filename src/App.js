@@ -37,7 +37,7 @@ class App extends React.Component{
         this.setState({
             hasSearched:true,
         })
-        axios.get('http://localhost:5000/search', {params:{searchText:this.state.searchText}})
+        axios.get('https://rocky-dawn-62908.herokuapp.com/search', {params:{searchText:this.state.searchText}})
         .then(response => {
             this.setState({
                 videos:response.data,
