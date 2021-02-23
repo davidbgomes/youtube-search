@@ -4,7 +4,6 @@ var axios = require('axios')
 var cors = require('cors')
 var app = express()
 app.use(cors())
-const port = 5000
 
 app.get('/search', (req, res) => {
 
@@ -27,6 +26,6 @@ app.get('/search', (req, res) => {
   	//res.send('Hello World!')
 })
 
-app.listen(port || 5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   	console.log(`listening at http://localhost:${port}`)
 })
