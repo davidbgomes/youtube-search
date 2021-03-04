@@ -7,9 +7,20 @@
     min-height:100vh;
 }
 
-/*@media screen and (max-width: 1440px){
-	h1
-}*/
+.textField{
+	width: 500px !important;
+}
+
+.inputGroup{
+	flex-wrap: nowrap !important;
+}
+
+@media screen and (max-width: 768px){
+	.textField{
+		width:70vw !important;
+	}
+}
+
 
 .searchDiv{
 	position: absolute;

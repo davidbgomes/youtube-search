@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch , Route , withRouter} from "react-router-dom"
-import {Button , Container, Form ,Row,Col,InputGroup} from 'react-bootstrap'
+import {Button , Container, Form ,Row,Col,InputGroup, Spinner} from 'react-bootstrap'
 import axios from 'axios'
 import "./styles/App.css"
 import VideoComponent from "./components/VideoComponent"
@@ -11,6 +11,7 @@ class App extends React.Component{
         super()
         this.state={
             searchText:"",
+            isSearching:false,
             hasSearched: false,
             videos:[]
         }
@@ -36,12 +37,13 @@ class App extends React.Component{
     search = () =>{
         this.setState({
             hasSearched:true,
+            isSearching:true,
         })
         axios.get('https://rocky-dawn-62908.herokuapp.com/search', {params:{searchText:this.state.searchText}})
         .then(response => {
             this.setState({
                 videos:response.data,
-                hasSearched:true,
+                isSearching:false,
             })
             console.log(response)
         })
@@ -63,9 +65,15 @@ class App extends React.Component{
                     <div>
                         <div className={`searchDiv${this.state.hasSearched ? ' searchDone' : ''}`}>
                             <h1 className="text-center mb-4">Youtube Search</h1>
-                            <InputGroup className="mb-4">
-                                <Form.Control ref={this.textInput} size="lg mr-2" type="text" onChange={this.onChangeSearch} value={this.state.searchText} onKeyDown={this.handleKeyDown} style={{width:"500px"}}/>
-                                <Button variant="primary" onClick={this.search}>Search</Button>
+                            <InputGroup className="inputGroup mb-4">
+                                <Form.Control className="textField mr-2" ref={this.textInput} size="lg" type="text" onChange={this.onChangeSearch} value={this.state.searchText} onKeyDown={this.handleKeyDown}/>
+                                <Button variant="primary" disabled={this.state.isSearching} onClick={this.search}>
+                                    {this.state.isSearching ?
+                                        <Spinner animation="border" size="sm"/>
+                                    :
+                                        <span>Search</span>
+                                    }
+                                </Button>
                             </InputGroup>
                         </div>
 
@@ -89,6 +97,10 @@ class App extends React.Component{
                                     </Col>
                                 ))}
                             </Row>
+                        }
+
+                        {this.state.isSearching &&
+                            <Spinner animation="grow" />
                         }
                     </div>
                 </div>
